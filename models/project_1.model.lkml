@@ -36,8 +36,8 @@ connection: "snowflake_poc_staging"
 # explore: dt_leads {}
 
 explore: dt_transfers {
-  label: "1.dt_transfers"
-  group_label: "BI"
+  label: "Excercise1"
+  group_label: "Training"
 }
 
 # explore: dt_user_daily_data {}
