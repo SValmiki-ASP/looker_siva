@@ -112,6 +112,16 @@ view: dt_transfers {
     sql: ${TABLE}."USER_PAYMENT_ACCOUNT_ID" ;;
   }
 
+  dimension: custom_status {
+    case: {
+      when: {
+        sql: ${transaction_status} in ('Cancelled','Rejected') ;;
+        label: "Cancelled/Rejected"
+      }
+      else : "unknown"
+    }
+  }
+
   measure: count {
     type: count
     drill_fields: []
