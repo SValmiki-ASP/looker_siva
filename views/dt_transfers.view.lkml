@@ -119,7 +119,8 @@ view: dt_transfers {
 
   measure: total_amount{
     type: sum
-    drill_fields: [transfer_type,category,transaction_status]
+    sql: ${amount} ;;
+    drill_fields: [transfer_type]
 
   }
 }
