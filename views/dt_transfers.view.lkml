@@ -138,4 +138,23 @@ view: dt_transfers {
     sql: ${unique_account_id} ;;
   }
 
+  measure: cancelled_amount {
+    type: sum
+    sql: ${amount} ;;
+    filters: {
+      field: transaction_status
+      value: "Cancelled"
+    }
+
+  }
+  measure: processed_amount {
+    type: sum
+    sql: ${amount} ;;
+    filters: {
+      field: transaction_status
+      value: "Processed"
+    }
+
+  }
+
 }
