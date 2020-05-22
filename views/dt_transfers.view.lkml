@@ -156,5 +156,9 @@ view: dt_transfers {
     }
 
   }
-
+measure: some_percentage{
+  type: number
+  sql: ${processed_amount}/${cancelled_amount} ;;
+  value_format_name: percent_2
+}
 }
