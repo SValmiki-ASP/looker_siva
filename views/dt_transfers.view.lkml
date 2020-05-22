@@ -123,4 +123,9 @@ view: dt_transfers {
     drill_fields: [transfer_type]
 
   }
+  measure:  total_uniqueaccounts{
+    type: count_distinct
+    sql: ${unique_account_id} ;;
+  }
+
 }
