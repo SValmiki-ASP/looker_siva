@@ -116,4 +116,10 @@ view: dt_transfers {
     type: count
     drill_fields: []
   }
+
+  measure: total_amount{
+    type: sum
+    drill_fields: [transfer_type,category,transaction_status]
+
+  }
 }
