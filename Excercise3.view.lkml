@@ -43,7 +43,7 @@ group by category,transaction_status,transfer_type
   }
 
   measure: derivedtable_amount {
-    type: number
+    type: sum
     sql: ${TABLE}.Amount;;
   }
 
