@@ -34,4 +34,15 @@ view: userstest {
     }
     sql: concat('https://admin20.prod.aspiration.io/customer/', ${TABLE}.user_id) ;;
   }
+  dimension: total_accounts_opened {
+    description: "The total number of Aspiration accounts this user has funded."
+    type: number
+    sql: ${TABLE}.total_accounts_opened ;;
+  }
+  dimension: is_customer {
+    label : " * Is Customer"
+    description: "Indicates whether the user has funded at least one Aspiration account."
+    type: yesno
+    sql: CASE WHEN  ${total_accounts_opened} > 0 then TRUE ELSE FALSE END;;
+  }
 }
