@@ -45,4 +45,21 @@ view: userstest {
     type: yesno
     sql: CASE WHEN  ${total_accounts_opened} > 0 then TRUE ELSE FALSE END;;
   }
+  dimension: marketing_cost_per_user {
+    description: "The marketing cost to acquire this customer."
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.marketing_cost_per_user ;;
+  }
+  dimension: user_disabled {
+    label: "Is Disabled"
+    type: yesno
+    sql: ${TABLE}.user_disabled ;;
+  }
+  measure: count_of_distinct_user_id_user{
+    label: "Count of Distinct User ID (User Level)"
+    type: count_distinct
+    sql: ${user_id} ;;
+
+  }
 }
