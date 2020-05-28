@@ -60,6 +60,35 @@ view: userstest {
     label: "Count of Distinct User ID (User Level)"
     type: count_distinct
     sql: ${user_id} ;;
-
+  }
+  dimension_group: initial_transfer_posted {
+    type: time
+    description: "The date the user's first depository transaction posted to their account."
+    timeframes: [
+      raw,
+      date,
+      day_of_month,
+      week,
+      day_of_week,
+      day_of_week_index,
+      day_of_year,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.initial_transfer_posted_date ;;
+  }
+  dimension:  inviting_user_id {
+    description: "The user that sent the invite"
+    type:  number
+    group_label: "Referral"
+    sql: ${TABLE}.inviting_user_id ;;
+  }
+  measure: count_distinct_successfully_invited_user_id {
+    group_label: "Referral"
+    type: count_distinct
+    sql: case when ${initial_transfer_posted_date} is not null then (case when (${inviting_user_id} is not null and ${inviting_user_id} <>1) then ${user_id} else null end) else null end;;
   }
 }
